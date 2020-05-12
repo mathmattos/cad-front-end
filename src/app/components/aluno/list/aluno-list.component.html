@@ -1,0 +1,32 @@
+<div class="box-body" *ngIf="alunos.length > 0">
+  <table class="table table-bordered">
+    <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>RG</th>
+      <th>RA</th>
+      <th>Série</th>
+      <th>Cidade</th>
+      <th>Curso</th>
+      <th>Ações</th>
+    </tr>
+    <tr *ngFor="let aluno of alunos">
+      <td>{{ aluno.id }}</td>
+      <td>{{ aluno.nome }}</td>
+      <td>{{ aluno.rg }}</td>
+      <td>{{ aluno.ra }}</td>
+      <td>{{ aluno.serie }}</td>
+      <td>{{ aluno.cidade }}</td>
+      <td>{{ aluno.curso.nomeCurso }}</td>
+      <td>
+        <button class="btn btn-primary" [routerLink]="['/aluno/edit', aluno.id]">Editar</button>
+        <button class="btn btn-danger" (click)="deletar(aluno.id)">Deletar</button>
+        <button class="btn btn-success" [routerLink]="['/aluno/detail', aluno.id]">Visualizar</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="alunos.length < 1" class="alert alert-info" role="alert">
+  <span class="icon-info-sign"></span>
+  Nenhum registro encontrado!
+</div>
