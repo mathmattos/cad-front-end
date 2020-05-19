@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import DataUtil from 'src/app/shared/util/data';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-curso-list',
   templateUrl: './curso-list.component.html',
@@ -13,7 +14,10 @@ import { ToastrService } from 'ngx-toastr';
 export class CursoListComponent implements OnInit {
 
   cursos: Curso[] = [];
-  cursoListForm: FormGroup
+  cursoListForm: FormGroup;
+  cursosPage = 10;
+  totalCursos: number;
+  cursosPageSize = 10;
 
   constructor(private cursoService: CursoService,
               private formBuilder: FormBuilder,
@@ -21,6 +25,9 @@ export class CursoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.inicializaFormulario();
+    this.getter(0, this.cursosPage);
+    this.setTotalCursos();
+
   }
 
   inicializaFormulario() {
@@ -35,7 +42,7 @@ export class CursoListComponent implements OnInit {
     this.cursoListForm.value.dataInicio = DataUtil.dateInputAsString(this.cursoListForm.value.dataInicio);
     this.cursoListForm.value.dataFim = DataUtil.dateInputAsString(this.cursoListForm.value.dataFim);
     const isDataValida = DataUtil.compararDataHora(this.cursoListForm.value.dataInicio, this.cursoListForm.value.dataFim);
-    if(isDataValida) {
+    if (isDataValida) {
       this.cursoService.getCursos().subscribe(cursos => {
         this.cursos = cursos;
       });
@@ -53,5 +60,29 @@ export class CursoListComponent implements OnInit {
       });
     }
   }
+
+
+  paginate(event) {
+
+    this.getter(event.page, this.cursosPage);
+  }
+
+  getter(page, size) {
+    this.cursosPage.getPageCursos(page, size)
+    .subscribe(
+      dados => this.cursos = dados.content
+
+    );
+  }
+
+  private setTotalCursos() {
+    this.cursoService.getTotalCursos()
+    .subscribe(
+      (data) => {
+        this.totalCursos = number;
+      }
+    );
+  }
+
 
 }

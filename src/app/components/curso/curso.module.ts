@@ -8,6 +8,7 @@ import { CursoFormComponent } from './form/curso-form.component';
 import { CursoListComponent } from './list/curso-list.component';
 
 
+
 @NgModule({
   declarations: [CursoFormComponent, CursoListComponent],
   imports: [
@@ -16,6 +17,6 @@ import { CursoListComponent } from './list/curso-list.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
 })
 export class CursoModule { }

@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CursoService {
 
+
   constructor(private httpClient: HttpClient) { }
 
   findById(id): Observable<Curso> {
@@ -30,5 +31,17 @@ export class CursoService {
   getCursos(): Observable<Curso[]> {
     return this.httpClient.get<Curso[]>(environment.baseApi + '/curso');
   }
+
+  getTotalCursos(): Observable<Curso[]> {
+    return this.httpClient.get<Curso[]>(environment.baseApi + '/curso/total');
+  }
+
+
+  getPageCursos(): Observable<Curso[]> {
+    return this.httpClient.get<Curso[]>(environment.baseApi + '/curso/page');
+  }
+
+
+
 
 }

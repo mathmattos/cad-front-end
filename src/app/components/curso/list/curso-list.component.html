@@ -53,3 +53,38 @@
     <span class="icon-info-sign"></span>
     Nenhum registro encontrado!
   </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Ementa</th>
+      <th scope="col">Data Inicio</th>
+      <th scope="col">Quantidade Max de Alunos</th>
+      
+  </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let curso of cursos">
+      <th scope="row">{{ curso.id }}</th>
+      <td>{{ curso.id | number}}</td>
+      <td>{{ curso.nome | number }}</td>
+      <td>{{ curso.ementa | number }}</td>
+      <td>{{ curso.dataInicio | number }}</td>
+      <td>{{ curso.dataFim | number }}</td>
+      <td>{{ curso.qtdMaxAluno | number }}</td>
+ </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [(page)]="cursosPage" [pageSize]="cursosPageSize">
+    </ngb-pagination>
+  
+    <select class="custom-select" style="width: auto" [(ngModel)]="cursosPageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>

@@ -7,6 +7,6 @@ export class Curso {
         public dataInicio?: string,
         public dataFim?: string,
         public qtdMaxAluno?: string
-    ){}
+    ) {}
 
 }
